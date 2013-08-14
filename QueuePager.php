@@ -75,7 +75,7 @@ class QueuePager extends CBasePager
 	{
 		$itemsSelector = CJavaScript::encode('.' . $this->itemsCssClass);
 		$listId = CJavaScript::encode($this->listId);
-		$listSettingsVar = $this->listId . 'Settings';
+		$listSettingsVar = preg_replace('/[^a-z]/i', '', $this->listId) . 'Settings';
 		$method = $this->prepend ? 'prepend' : 'append';
 
 		return <<<JS
