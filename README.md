@@ -12,11 +12,15 @@ $this->widget('zii.widgets.CListView', array(
 	'id' => 'list-id',
 	'pager' => array(
 		'class' => 'ext.yii-queue-pager.QueuePager',
+		// Button label
+		'label' => Yii::t('app', 'read more'),
+		// HTML tag options
 		'options' => array(
 			'class' => 'button',
 		),
-		// List id required, it is copy from list widget.
-		'listId' => 'list-id',
+		// Prepend loaded items or append if false
+		// Defaults to false.
+		'prepend' => true,
 	),
 ));
 ```

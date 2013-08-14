@@ -22,22 +22,12 @@ class QueuePager extends CBasePager
 	 */
 	public $prepend = false;
 
-	/**
-	 * @var string
-	 */
-	public $listId;
-
-	/**
-	 * @var string
-	 */
-	public $itemsCssClass = 'items';
-
 	public function init()
 	{
 		parent::init();
 
-		if (empty($this->listId)) {
-			throw new CException('Invalid config. Widget required the list ID.');
+		if (!$this->getOwner() instanceof CBaseListView) {
+			throw new CException('Not support.');
 		}
 
 		if (!isset($this->options['id'])) {
@@ -73,9 +63,11 @@ class QueuePager extends CBasePager
 
 	protected function clientScript()
 	{
-		$itemsSelector = CJavaScript::encode('.' . $this->itemsCssClass);
-		$listId = CJavaScript::encode($this->listId);
-		$listSettingsVar = preg_replace('/[^a-z]/i', '', $this->listId) . 'Settings';
+		/** @var CBaseListView $owner */
+		$owner = $this->getOwner();
+		$itemsSelector = CJavaScript::encode('.' . $owner->itemsCssClass);
+		$listId = CJavaScript::encode($owner->getId());
+		$listSettingsVar = preg_replace('/[^a-z]/i', '', $owner->getId()) . 'Settings';
 		$method = $this->prepend ? 'prepend' : 'append';
 
 		return <<<JS
