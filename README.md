@@ -1,4 +1,4 @@
-Queue Pager
+More Pager
 ===============
 
 Pager to load pages at a time, one after the other.
@@ -11,7 +11,7 @@ $this->widget('zii.widgets.CListView', array(
 	'itemView' => '_item',
 	'id' => 'list-id',
 	'pager' => array(
-		'class' => 'ext.yii-queue-pager.QueuePager',
+		'class' => 'ext.more-pager.MorePager',
 		// Button label
 		'label' => Yii::t('app', 'read more'),
 		// HTML tag options
